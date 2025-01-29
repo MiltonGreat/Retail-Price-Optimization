@@ -2,22 +2,15 @@
 
 ### Overview
 
-This project focuses on building a predictive model for retail price optimization. The goal is to determine optimal product prices that balance customer demand and maximize revenue, using historical retail data.
+Price optimization uses historical data to identify the most appropriate price for a product or service that maximizes a company's profitability. Effective pricing considers various factors such as demographics, operating costs, competitive pricing, survey data, and product value. Businesses regularly upgrade their offerings, and pricing must reflect these changes while ensuring competitiveness and sustainability.
 
-Price optimization is crucial for maintaining profitability while keeping customers engaged. By understanding demand patterns and price elasticity, businesses can set competitive prices to achieve their goals.
+### Why is Price Optimization Important?
 
-### Objectives
+- Overpricing may lead to customer loss.
+- Underpricing reduces revenue and profitability.
+- Optimal pricing strikes a balance between business goals and customer satisfaction.
 
-##### Exploratory Data Analysis (EDA):
-- Analyze the distribution of demand, prices, and other features.
-- Understand relationships between features using correlation matrices and visualizations.
-
-##### Demand Forecasting:
-- Use historical sales data to predict future demand using models like Random Forest and Prophet.
-
-##### Price Optimization:
-- Build a Random Forest Regressor to simulate demand for different price points.
-- Identify the price that maximizes revenue using predicted demand.
+This project implements machine learning models to determine the optimal price by predicting demand and maximizing revenue.
 
 ### Dataset
 
@@ -29,16 +22,41 @@ Features:
 - Competition data: comp_1, comp_2, comp_3.
 - Time features: month_year, weekday, holiday, etc.
 
+### Methodology
+
+1. Data Preprocessing
+- Handling missing values and outliers
+- Feature engineering and encoding categorical variables
+- Creating interaction terms between pricing factors
+
+2. Model Selection & Training
+- Used Random Forest, XGBoost, and Gradient Boosting for price-demand prediction
+- Tuned hyperparameters using RandomizedSearchCV
+- Evaluated models based on MSE, MAE, MAPE, and R²
+
+3. Price Optimization
+- Simulated demand by varying price points within a realistic range
+- Predicted demand using the best-performing model (XGBoost)
+- Maximized revenue by identifying the price that yields the highest revenue
+
+### Visualization
+
+The project includes:
+
+- Feature Importance Analysis (XGBoost feature contributions)
+- Residual Plot (Error distribution analysis)
+- Revenue vs. Price Plot (To visualize optimal pricing)
+
 ### Results
 
-##### MAPE: ~2.39%
-- The low MAPE indicates the model is generally accurate relative to the scale of the demand.
-- The model performs reasonably well for practical use, especially if the focus is on percentage accuracy (e.g., for pricing decisions).
+Best Model: XGBoostPerformance Metrics:
+- MSE: 1.76
+- MAE: 0.65
+- MAPE: 0.05
+- R²: 0.99
 
-##### R² Score: 0.32
-- The low R² score indicates the model fails to explain a significant portion of the variance in demand, suggesting missing features or non-linear relationships not captured by the model.
-- The MAE of 10.14 units suggests there is room to improve the precision of individual predictions.
+Optimal Price: $1.00 (based on simulated revenue maximization)
 
 ### Source
 
-https://www.kaggle.com/datasets/suddharshan/retail-price-optimization
+Dataset: [Retail Price Optimization Dataset on Kaggle](https://www.kaggle.com/datasets/suddharshan/retail-price-optimization)
